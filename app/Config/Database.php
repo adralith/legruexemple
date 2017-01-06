@@ -60,9 +60,13 @@ return array(
         'mysql' => array(
             'driver'    => 'mysql',
             'host'      => 'localhost',
+            //'host'      => 'mysql.hostinger.fr',
             'database'  => 'nova',
+            //'database'  => 'u343028244_nova'
             'username'  => 'florent',
+            //'username'  => 'u343028244_flo',
             'password'  => 'renard10',
+            //'password'  => 'renard10',
             'prefix'    => '',
             'charset'   => 'utf8',
             'collation' => 'utf8_general_ci',

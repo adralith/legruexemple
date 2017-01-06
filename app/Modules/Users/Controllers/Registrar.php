@@ -63,8 +63,8 @@ class Registrar extends BackendController
 
         Validator::extend('strong_password', function($attribute, $value, $parameters)
         {
-            $pattern = "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/";
-
+            //$pattern = "/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/";
+            $pattern="/(?=.*[A-Z])(?=.*[a-z])(?=.*[1-9])/";
             return (preg_match($pattern, $value) === 1);
         });
 
@@ -101,7 +101,7 @@ class Registrar extends BackendController
 
         // Verify the submitted reCAPTCHA
         if(! ReCaptcha::check()) {
-            $status = __d('users', 'Invalid reCAPTCHA submitted.');
+            $status = __d('users', 'Captcha érroné! :/');
 
             return Redirect::back()->withStatus($status, 'danger');
         }
@@ -127,9 +127,9 @@ class Registrar extends BackendController
         // Retrieve the default 'user' Role.
         $role = Role::where('slug', 'user')->first();
 
-        if($role === null) {
+        /*if($role === null) {
             throw new \RuntimeException('Default Role not found.');
-        }
+        }*/
 
         // Create the User record.
         $user = User::create(array(
@@ -144,7 +144,7 @@ class Registrar extends BackendController
         // Send the associated Activation E-mail.
         Mail::send('Emails/Auth/Activate', array('token' => $token), function($message) use ($user)
         {
-            $subject = __d('users', 'Activate your Account!');
+            $subject = __d('users', 'Activez votre compte!');
 
             $message->to($user->email, $user->realname);
 
@@ -152,7 +152,7 @@ class Registrar extends BackendController
         });
 
         // Prepare the flash message.
-        $status = __d('users', 'Your Account has been created. We have sent you an E-mail to activate your Account.');
+        $status = __d('users', 'Votre compte a bien été créé, vous recevrez d\'ici peu un mail vous indiquant comment l\'activer');
 
         return Redirect::to('register/status')->withStatus($status);
     }
@@ -177,13 +177,13 @@ class Registrar extends BackendController
 
             if ($user->save()) {
                 // Prepare the flash message.
-                $status = __d('users', 'Activated! You can now Sign in!');
+                $status = __d('users', 'Compté activé ! Vous pouvez maintenant vous connecter :)');
 
                 return Redirect::to('login')->withStatus($status);
             }
         }
 
-        $status = __d('users', 'We could not activate your Account. Try again later.');
+        $status = __d('users', 'Nous n\'avons pas pu activer votre compte, ré-essayez plus tard :/');
 
         return Redirect::to('register/status')->withStatus($status);
     }

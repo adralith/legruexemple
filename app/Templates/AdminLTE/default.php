@@ -84,7 +84,7 @@ $langMenuLinks = ob_get_clean();
                         <i class='fa fa-language'></i> <?= $langName; ?>
                     </a>
                     <ul class="dropdown-menu">
-                        <?= $langMenuLinks; ?>
+                        <?= $langMenuLinks ; ?>
                     </ul>
                 </li>
                 <?php if (Auth::check()) { ?>
@@ -96,13 +96,13 @@ $langMenuLinks = ob_get_clean();
                 </li>
                 <?php } else { ?>
                <li <?php if($currentUri == 'register') echo 'class="active"'; ?>>
-                    <a href='<?= site_url('register'); ?>'><i class='fa fa-user'></i> <?= __d('adminlte', 'Sign Up'); ?></a>
+                    <a href='<?= site_url('register'); ?>'><i class='fa fa-user'></i> <?= __d('adminlte', 'Créer un compte'); ?></a>
                 </li>
                 <li <?php if($currentUri == 'login') echo 'class="active"'; ?>>
-                    <a href='<?= site_url('login'); ?>'><i class='fa fa-sign-out'></i> <?= __d('adminlte', 'Sign In'); ?></a>
+                    <a href='<?= site_url('login'); ?>'><i class='fa fa-sign-out'></i> <?= __d('adminlte', 'Se connecter'); ?></a>
                 </li>
                 <li <?php if($currentUri == 'password/remind') echo 'class="active"'; ?>>
-                    <a href='<?= site_url('password/remind'); ?>'><i class='fa fa-user'></i> <?= __d('adminlte', 'Forgot Password?'); ?></a>
+                    <a href='<?= site_url('password/remind'); ?>'><i class='fa fa-user'></i> <?= __d('adminlte', 'Mot de passe oublié?'); ?></a>
                 </li>
                 <?php } ?>
             </ul>
@@ -132,7 +132,7 @@ $langMenuLinks = ob_get_clean();
       <?php } ?>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="http://www.novaframework.com/" target="_blank"><b>Nova Framework <?= $version; ?> / Kernel <?= VERSION; ?></b></a> - </strong> All rights reserved.
+    <strong>Par Florent Legru
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -164,6 +164,5 @@ echo isset($footer) ? $footer : ''; // Place to pass data / plugable hook zone
 </script>
 
 <!-- DO NOT DELETE! - Forensics Profiler -->
-
 </body>
 </html>

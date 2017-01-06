@@ -7,20 +7,15 @@
 $language = Language::code();
 
 $languages = Config::get('languages');
+//print_r($languages);
 
 //
 ob_start();
 
-foreach ($languages as $code => $info) {
-?>
-<li <?php if($language == $code) echo 'class="active"'; ?>>
-    <a href='<?= site_url('language/' .$code); ?>' title='<?= $info['info']; ?>'><?= $info['name']; ?></a>
-</li>
-<?php
-}
 
-$langMenuLinks = ob_get_clean();
 ?>
+
+
 <!DOCTYPE html>
 <html lang="<?= $language; ?>">
 <head>
@@ -41,31 +36,27 @@ echo isset($css) ? $css : ''; // Place to pass data / plugable hook zone
 </head>
 <body style='padding-top: 28px;'>
 
-<nav class="navbar navbar-default navbar-xs navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <?= $langMenuLinks; ?>
-            </ul>
-        </div>
-    </div>
-</nav>
+
 
 <?= isset($afterBody) ? $afterBody : ''; // Place to pass data / plugable hook zone ?>
 
-<div class="container">
+<div class="container" align="center" >
     <p>
-        <img src='<?= template_url('images/nova.png', 'Default'); ?>' alt='<?= Config::get('app.name', SITE_TITLE); ?>'>
+        <a href="http://localhost:8080/login"> <img style="min-width:100px;max-width:300px;" src='<?= template_url('images/login.png', 'Default'); ?>' alt='<?= Config::get('app.name', SITE_TITLE); ?>'>
+    </a>
+
+          <a href="http://localhost:8080/register"><img style="min-width:100px;max-width:300px;" src='<?= template_url('images/signup.png', 'Default'); ?>' alt='<?= Config::get('app.name', SITE_TITLE); ?>'>
+        </a>
     </p>
 
     <?= $content; ?>
 </div>
 
-<footer class="footer">
-    <div class="container-fluid">
+<footer class="footer" ">
+    <div class="container-fluid" >
         <div class="row" style="margin: 15px 0 0;">
             <div class="col-lg-4">
-                <p class="text-muted">Copyright &copy; <?php echo date('Y'); ?> <a href="http://www.novaframework.com/" target="_blank"><b>Nova Framework <?= $version; ?> / Kernel <?= VERSION; ?></b></a></p>
+                <p class="text-muted"> Par Florent Legru
             </div>
             <div class="col-lg-8">
                 <p class="text-muted pull-right">

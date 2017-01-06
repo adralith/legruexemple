@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `nova_roles`
 --
 
-CREATE TABLE `nova_roles` (
+CREATE TABLE `roles` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(40) CHARACTER SET utf8 NOT NULL,
   `slug` varchar(40) CHARACTER SET utf8 NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `nova_roles` (
 -- Dumping data for table `nova_roles`
 --
 
-INSERT INTO `nova_roles` (`id`, `name`, `slug`, `description`, `created_at`, `updated_at`) VALUES
+INSERT INTO `roles` (`id`, `name`, `slug`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Root', 'root', 'Use this account with extreme caution. When using this account it is possible to cause irreversible damage to the system.', '2016-06-05 01:48:00', '2016-06-05 01:48:00'),
 (2, 'Administrator', 'administrator', 'Full access to create, edit, and update companies, and orders.', '2016-06-05 01:48:00', '2016-06-05 01:48:00'),
 (3, 'Manager', 'manager', 'Ability to create new companies and orders, or edit and update any existing ones.', '2016-06-05 01:48:00', '2016-06-05 01:48:00'),
